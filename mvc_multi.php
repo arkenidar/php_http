@@ -1,5 +1,5 @@
 <?php
-function http_mvc_multi($request_variables){
+function http_mvc_multi($request_variables=[]){
     $template_file = 'template_multi.php';
 
     $title = "title here";
