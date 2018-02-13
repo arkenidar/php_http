@@ -15,4 +15,9 @@ switch($request_variables['u']){
         require 'mvc_test.php';
         echo http_mvc_test1($request_variables);
         break;
+
+    case 'multi':
+        require 'mvc_multi.php';
+        echo http_mvc_multi($request_variables);
+        break;
 }
