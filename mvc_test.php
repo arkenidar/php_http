@@ -18,6 +18,6 @@ function http_mvc_test1($request_variables){
 
     $template_variables = compact('title', 'dump', 'content');
 
-    require 'lib_template.php';
+    require_once 'lib_template.php';
     return apply_template($template_file, $template_variables);
 }
