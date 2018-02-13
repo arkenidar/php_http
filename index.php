@@ -1,8 +1,9 @@
 <?php
 
 $request_variables = $_REQUEST; // get from browser: useful for production.
+serve_request($request_variables);
 
-function request($request_variables){
+function serve_request($request_variables){
 
 if(''==((string)@$request_variables['u']))
     $request_variables['u']='mvc';
