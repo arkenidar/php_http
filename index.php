@@ -13,23 +13,19 @@ function serve_request($request_variables){
         return apply_template($template_file, $template_variables);
     }
 
-    switch($request_variables['u']){
-
-        case 'api':
-            require_once 'api_test.php';
-            echo http_api_test1($request_variables);
-            break;
-
-        default:
-        case 'test':
-            require_once 'mvc_test.php';
-            echo http_mvc(http_mvc_test1($request_variables));
-            break;
-
-        case 'multi':
-            require_once 'mvc_multi.php';
-            echo http_mvc(http_mvc_multi($request_variables));
-            break;
-    }
-
+    $routes = [];
+    $routes['api'] = function($request_variables){
+        require_once 'api_test.php';
+        echo http_api_test1($request_variables);
+    };
+    $routes['test'] = function($request_variables){
+        require_once 'mvc_test.php';
+        echo http_mvc(http_mvc_test1($request_variables));
+    };
+    $routes['multi'] = function($request_variables){
+        require_once 'mvc_multi.php';
+        echo http_mvc(http_mvc_multi($request_variables));
+    };
+    if((string)@$request_variables['u']=='') $request_variables['u'] = 'test';
+    $routes[$request_variables['u']]($request_variables);
 }
