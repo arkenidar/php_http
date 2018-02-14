@@ -1,3 +1,7 @@
+<?php
+    $wrap = 'template_wrapper';
+?>
+
 <title>MVC test 1</title>
 
 <p><?=$_('dump')?></p>

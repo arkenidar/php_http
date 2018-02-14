@@ -1,7 +1,7 @@
 <?php
 
 function http_mvc_test1($request_variables){
-    $template_file = 'template1.php';
+    $template_file = 'template1';
 
     $id = htmlspecialchars((int)@$request_variables['id']);
     $title = "title: id=$id";

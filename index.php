@@ -3,12 +3,6 @@
 $request_variables = $_REQUEST;
 serve_request($request_variables);
 
-function header_footer_wrapper($wrapped_content, $template_file = 'template_wrapper.php'){
-    require_once 'lib_template.php';
-    $template_variables = compact('wrapped_content');
-    return apply_template($template_file, $template_variables);
-}
-
 function serve_request($request_variables){
 
     $routes = [];
@@ -23,11 +17,11 @@ function serve_request($request_variables){
     };
     $routes['test1'] = function($request_variables){
         require_once 'mvc_test.php';
-        echo header_footer_wrapper(http_mvc_test1($request_variables));
+        echo http_mvc_test1($request_variables);
     };
     $routes['multi'] = function($request_variables){
         require_once 'mvc_multi.php';
-        echo header_footer_wrapper(http_mvc_multi($request_variables));
+        echo http_mvc_multi($request_variables);
     };
 
     if((string)@$request_variables['u']=='')
