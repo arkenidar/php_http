@@ -18,5 +18,5 @@ function apply_template_no_prefix($template_file, $template_variables){
 }
 
 function apply_template($template_file, $template_variables){
-    return apply_template_no_prefix(dirname(__FILE__).'/templates/'.$template_file.'.php', $template_variables);
+    return apply_template_no_prefix(dirname(__FILE__).'/../templates/'.$template_file.'.php', $template_variables);
 }
