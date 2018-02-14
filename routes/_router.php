@@ -20,7 +20,7 @@ $routes['multi'] = function($request_variables){
 ///////////////
 
 function todo_render(){
-    $db = new PDO('sqlite:routes/todo_db.sqlite');
+    $db = new PDO('sqlite:db/todo_db.sqlite');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $items = $db->query('SELECT * FROM todos');
     require_once 'routes/lib_template.php';
@@ -28,14 +28,14 @@ function todo_render(){
 }
 
 function todo_remove($id){
-    $db = new PDO('sqlite:routes/todo_db.sqlite');
+    $db = new PDO('sqlite:db/todo_db.sqlite');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $db->prepare('DELETE FROM todos WHERE id=:id');
     $stmt->execute([':id'=>$id]);
 }
 
 function todo_add($item){
-    $db = new PDO('sqlite:routes/todo_db.sqlite');
+    $db = new PDO('sqlite:db/todo_db.sqlite');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $db->prepare('INSERT INTO todos (description) VALUES (:description)');
     $stmt->execute([':description'=>$item]);
