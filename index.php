@@ -3,15 +3,15 @@
 $request_variables = $_REQUEST;
 serve_request($request_variables);
 
-function serve_request($request_variables){
+function http_mvc($mvc_content){
+    $template_file = 'template_mvc.php';
+    $title = 'title';
+    require_once 'lib_template.php';
+    $template_variables = compact('title', 'mvc_content');
+    return apply_template($template_file, $template_variables);
+}
 
-    function http_mvc($mvc_content){
-        $template_file = 'template_mvc.php';
-        $title = 'title';
-        require_once 'lib_template.php';
-        $template_variables = compact('title', 'mvc_content');
-        return apply_template($template_file, $template_variables);
-    }
+function serve_request($request_variables){
 
     $routes = [];
     $routes['api'] = function($request_variables){
