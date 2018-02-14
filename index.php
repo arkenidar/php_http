@@ -14,6 +14,11 @@ function http_mvc($mvc_content){
 function serve_request($request_variables){
 
     $routes = [];
+
+    $routes['default'] = 'test';
+    $routes['404'] = function($request_variables){
+        echo 'not found';
+    };
     $routes['api'] = function($request_variables){
         require_once 'api_test.php';
         echo http_api_test1($request_variables);
@@ -26,6 +31,12 @@ function serve_request($request_variables){
         require_once 'mvc_multi.php';
         echo http_mvc(http_mvc_multi($request_variables));
     };
-    if((string)@$request_variables['u']=='') $request_variables['u'] = 'test';
-    $routes[$request_variables['u']]($request_variables);
+
+    if((string)@$request_variables['u']=='')
+        $request_variables['u'] = $routes['default'];
+    $route = @$routes[$request_variables['u']];
+    if(!$route)
+        $route = @$routes['404'];
+    if($route)
+        $route($request_variables);
 }
