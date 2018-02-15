@@ -10,5 +10,5 @@
 <input type="submit" value="add">
 </form>
 <?php foreach($_u('items') as $item) { ?>
-    <li><a href="?u=todo_remove&id=<?=$_e($item['id'])?>"><?=$_e($item['description'])?></a></li>
+    <li><a href="?u=todo_detail&id=<?=$_e($item['id'])?>"><?=$_e($item['description'])?></a></li>
 <?php } ?>

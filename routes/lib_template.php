@@ -12,7 +12,9 @@ function apply_template_no_prefix($template_file, $template_variables){
     $_ = function ($variable_name) use (&$template_variables){
         return htmlspecialchars($template_variables[$variable_name]);
     };
-    $_e = htmlspecialchars;
+    $_e = function($string_to_escape) {
+        return htmlspecialchars((string)$string_to_escape);
+    };
 
     ob_start();
     require $template_file;

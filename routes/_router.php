@@ -33,3 +33,16 @@ $routes['todo_remove'] = function($request_variables){
     todo_remove($request_variables['id']);
     todo_render();
 };
+$routes['todo_detail'] = function($request_variables){
+    require_once 'manager/todo_manager.php';
+    $id = (int)@$request_variables['id'];
+    todo_render_detail($id);
+};
+$routes['todo_update'] = function($request_variables){
+    require_once 'manager/todo_manager.php';
+    $id = (int)@$request_variables['id'];
+    $description = (string)@$request_variables['description'];
+    todo_update($id, $description);
+    //todo_render_detail($id);
+    header("Location: ?u=todo_detail&id=$id");
+};
