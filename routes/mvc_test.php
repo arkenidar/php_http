@@ -10,8 +10,8 @@ function http_mvc_test1($request_variables){
     if(''==((string)@$request_variables['message']))
         $request_variables['message']='(no message)';
 
-    $message = htmlspecialchars((string)@$request_variables['message']);
-    $content = "content: $message.";
+    $message = (string)@$request_variables['message'];
+    $content = "message: '$message'";
 
     $template_variables = compact('title', 'dump', 'content');
 

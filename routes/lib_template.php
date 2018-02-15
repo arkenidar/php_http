@@ -6,9 +6,14 @@ function header_footer_wrapper($wrapped_content, $template_file){
 }
 
 function apply_template_no_prefix($template_file, $template_variables){
-    $_ = function ($variable_name) use (&$template_variables){
+    $_u = function ($variable_name) use (&$template_variables){
         return $template_variables[$variable_name];
     };
+    $_ = function ($variable_name) use (&$template_variables){
+        return htmlspecialchars($template_variables[$variable_name]);
+    };
+    $_e = htmlspecialchars;
+
     ob_start();
     require $template_file;
     $produced_template = ob_get_contents();
