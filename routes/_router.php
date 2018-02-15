@@ -44,5 +44,5 @@ $routes['todo_update'] = function($request_variables){
     $description = (string)@$request_variables['description'];
     todo_update($id, $description);
     //todo_render_detail($id);
-    header("Location: ?u=todo_detail&id=$id");
+    header("Location: ?u=todo_list");
 };

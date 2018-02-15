@@ -6,7 +6,7 @@
 
 <p>To Do Items</p>
 <form method="post" action="?u=todo_add">
-<input name="item" placeholder="label of the todo item">
+<input name="item" placeholder="label of the todo item" autofocus="true">
 <input type="submit" value="add">
 </form>
 <?php foreach($_u('items') as $item) { ?>
