@@ -26,12 +26,12 @@ $routes['todo_list'] = function($request_variables){
 $routes['todo_add'] = function($request_variables){
     require_once 'manager/todo_manager.php';
     todo_add($request_variables['item']);
-    todo_render();
+    header("Location: ?u=todo_list");
 };
 $routes['todo_remove'] = function($request_variables){
     require_once 'manager/todo_manager.php';
     todo_remove($request_variables['id']);
-    todo_render();
+    header("Location: ?u=todo_list");
 };
 $routes['todo_detail'] = function($request_variables){
     require_once 'manager/todo_manager.php';
@@ -43,6 +43,5 @@ $routes['todo_update'] = function($request_variables){
     $id = (int)@$request_variables['id'];
     $description = (string)@$request_variables['description'];
     todo_update($id, $description);
-    //todo_render_detail($id);
     header("Location: ?u=todo_list");
 };
