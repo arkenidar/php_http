@@ -6,4 +6,4 @@
 <?=$_u('wrapped_content')?>
 <hr>
 
-footer
+<a href="https://github.com/arkenidar/php_http">php_http files (this section of website) are available on arkenidar's github</a>
