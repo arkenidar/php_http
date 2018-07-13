@@ -5,10 +5,10 @@
 <title>To Do</title>
 
 <p>To Do Items</p>
-<form method="post" action="?u=todo_add">
+<form method="post" action="todo_add">
 <input name="item" placeholder="label of the todo item" autofocus="true">
 <input type="submit" value="add">
 </form>
 <?php foreach($_u('items') as $item) { ?>
-    <li><a href="?u=todo_detail&id=<?=$_e($item['id'])?>"><?=$_e($item['description'])?></a></li>
+    <li><a href="todo_detail?id=<?=$_e($item['id'])?>"><?=$_e($item['description'])?></a></li>
 <?php } ?>

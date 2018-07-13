@@ -5,9 +5,9 @@
 <title>To Do (detail)</title>
 
 <p>To Do Item detail</p>
-<a href="?u=todo_remove&id=<?=$_('id')?>">Remove</a>
+<a href="todo_remove?id=<?=$_('id')?>">Remove</a>
 
-<form method="post" action="?u=todo_update">
+<form method="post" action="todo_update">
 <input name="description" placeholder="label of the todo item" value="<?=$_('description')?>" autofocus="true">
 <input type="hidden" name="id" value="<?=$_('id')?>">
 <input type="submit" value="update">
