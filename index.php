@@ -1,7 +1,12 @@
 <?php
 
 $request_variables = $_REQUEST;
-serve_request($request_variables);
+
+try {
+    serve_request($request_variables);
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
 
 function serve_request($request_variables){
 
