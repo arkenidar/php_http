@@ -1,5 +1,7 @@
 <?php
 
+require_once 'templates/lib_template.php';
+
 function http_mvc_test1($request_variables){
     $template_file = 'template1';
 
@@ -15,6 +17,5 @@ function http_mvc_test1($request_variables){
 
     $template_variables = compact('title', 'dump', 'content');
 
-    require_once 'lib_template.php';
     return apply_template($template_file, $template_variables);
 }

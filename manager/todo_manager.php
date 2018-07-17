@@ -8,7 +8,7 @@ function todo_list(){
 
 function todo_render(){
     $items = todo_list();
-    require_once 'routes/lib_template.php';
+    require_once 'templates/lib_template.php';
     echo apply_template('todo/template_todo_list', compact('items'));
 }
 
@@ -32,7 +32,7 @@ function todo_render_detail($id){
     $stmt->execute([':id'=>$id]);
     $item = $stmt->fetchAll()[0];
 
-    require_once 'routes/lib_template.php';
+    require_once 'templates/lib_template.php';
     echo apply_template('todo/template_todo_detail', $item);
 }
 
