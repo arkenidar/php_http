@@ -11,7 +11,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 const base_dir = window.location.pathname.split('/').slice(0,-1).join('/');
 
-var base='../'//'../index.php?r='
+var base='../' //'../index.php?r='
 
 // on ready
 $(function(){

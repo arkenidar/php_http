@@ -4,7 +4,7 @@ $routes['chat_app'] = function($request_variables){
     header('Location: chat/chat_client.html');
 };
 
-require 'manager/util/pdo.php';
+require 'manager/chat/pdo.php';
 
 $routes['chat_app/db_setup'] = function($request_variables){
     pdo_execute(pdo_setup_db_sql());
@@ -13,8 +13,8 @@ $routes['chat_app/db_setup'] = function($request_variables){
     echo '<a href="../chat_app">Chat app</a>';
 };
 
-require 'manager/util/emoticons.php';
-require 'manager/util/links.php';
+require 'manager/chat/emoticons.php';
+require 'manager/chat/links.php';
 
 function user(){
     return "anonymous";
