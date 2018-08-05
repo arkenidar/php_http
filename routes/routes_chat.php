@@ -26,7 +26,7 @@ $routes['chat_list'] = function($request_variables){
     $messages = pdo_execute('SELECT * FROM (SELECT * FROM chat_messages ORDER BY creation_timestamp DESC LIMIT 15) AS res ORDER BY creation_timestamp ASC');
     // - produce HTML output
     // IN: $messages OUT: $output
-    $output='<!doctype html>'."\n";
+    $output='<!doctype html><meta charset="utf-8">'."\n";
     $style = isset($request_variables['style']);
     $output .= $style?'<link rel="stylesheet" type="text/css" href="chat/chat_client.css">'."\n":'';
     foreach($messages as $message) {
