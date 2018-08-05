@@ -7,6 +7,11 @@ $routes['404'] = function($request_variables){
 
 require_once 'routes/routes_todo.php';
 
+require_once 'routes/routes_chat.php';
+$routes['util/phpinfo'] = function($request_variables){
+    phpinfo();
+};
+
 $routes['api'] = function($request_variables){
     require_once 'routes/api_test.php';
     echo http_api_test1($request_variables);

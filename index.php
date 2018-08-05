@@ -5,7 +5,7 @@ $request_variables = $_REQUEST;
 try {
     serve_request($request_variables);
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    echo 'Caught exception: ',$e->getMessage(),"\n";
 }
 
 function serve_request($request_variables){
@@ -14,13 +14,15 @@ function serve_request($request_variables){
 
     require_once 'routes/_router.php';
 
-    $path_info = substr((string)@$_SERVER['PATH_INFO'], 1);
-    if(''==((string)@$request_variables['u']) && ''!=$path_info)
-        $request_variables['u'] = $path_info;
+    $route='';
+    if(isset($request_variables['r']))
+        $route=$request_variables['r'];
+    else if(isset($_SERVER['PATH_INFO']))
+        $route=substr($_SERVER['PATH_INFO'],1);
 
-    if((string)@$request_variables['u']=='')
-        $request_variables['u'] = $routes['default'];
-    $route = @$routes[$request_variables['u']];
+    if($route=='')
+        $route = $routes['default'];
+    $route = @$routes[$route];
     if(!$route)
         $route = @$routes['404'];
     if($route)

@@ -20,7 +20,7 @@ function apply_template_no_prefix($template_file, $template_variables){
     require $template_file;
     $produced_template = ob_get_contents();
     ob_end_clean();
-    if((string)@$wrap!='') $produced_template = header_footer_wrapper($produced_template, $wrap);
+    if(isset($wrap)) $produced_template = header_footer_wrapper($produced_template, $wrap);
     return $produced_template;
 }
 

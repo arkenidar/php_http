@@ -1,3 +1,7 @@
+
+AcceptPathInfo On
+
 RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond $1 !^(index\.php)
 RewriteRule ^(.*)$ index\.php/$1 [L]

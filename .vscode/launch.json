@@ -8,7 +8,10 @@
             "name": "Listen for XDebug",
             "type": "php",
             "request": "launch",
-            "port": 9000
+            "port": 9000,
+            "pathMappings": {
+                "/mnt/c/Users/dario/Dropbox/src/php/php_http": "${workspaceRoot}",
+            }
         },
         {
             "name": "Launch currently open script",
