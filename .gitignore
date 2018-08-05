@@ -1,1 +1,2 @@
 *.sqlite
+manager/chat/pdo_conf.php
