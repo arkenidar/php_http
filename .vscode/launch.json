@@ -11,6 +11,7 @@
             "port": 9000,
             "pathMappings": {
                 "/mnt/c/Users/dario/Dropbox/src/php/php_http": "${workspaceRoot}",
+                "/media/Windows/Users/dario/Dropbox/src/php/php_http": "${workspaceRoot}"
             }
         },
         {

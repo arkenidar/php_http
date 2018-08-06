@@ -1,6 +1,6 @@
 <?php
 
-$routes['default'] = 'todo_list';
+$routes['default'] = 'test1';
 $routes['404'] = function($request_variables){
     echo 'not found';
 };

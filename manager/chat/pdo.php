@@ -12,10 +12,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 require 'pdo_conf.php';
 
-pdo_setup();
-
-function pdo_setup(){
-
+function pdo_setup($dbname=''){
+	
 	switch(pdo_db_type){
 
 		case 'sqlite':
@@ -24,42 +22,39 @@ function pdo_setup(){
 			break;
 
 		case 'postgres':
-			$db_url = 'pgsql:host=localhost;dbname=chat';
+			$db_url = 'pgsql:host=localhost;'.$dbname;
 			$pdo = new PDO($db_url, postgres_username, postgres_password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION] );
 			break;
 
 		case 'mysql':
-			$db_url = 'mysql:host=localhost;dbname=chat';
+			$db_url = 'mysql:host=localhost;'.$dbname;
 			$pdo = new PDO($db_url, mysql_username, mysql_password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION] );
 			break;
 	}
 
 	assert($pdo!=null);
-	$_SERVER['pdo']=$pdo;
+	return $pdo;
 }
 
 function pdo_setup_db_sql(){
-	$postgres_or_mysql = 
-	  'CREATE TABLE IF NOT EXISTS chat_messages (
-      id SERIAL PRIMARY KEY NOT NULL,
-      message_text TEXT NOT NULL,
-      sender TEXT NOT NULL,
-      creation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL );';
-	$setup_db_sql = [
-	'sqlite' => 'CREATE TABLE IF NOT EXISTS chat_messages (
-      id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      message_text TEXT NOT NULL,
-      sender TEXT NOT NULL,
-      creation_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL )',
-	'postgres' => $postgres_or_mysql,
-    'mysql' => $postgres_or_mysql,
-    ];
-	$sql = $setup_db_sql[pdo_db_type];
-	return $sql;
+
+	if(pdo_db_type=='sqlite'){
+		$sqlite_setup='CREATE TABLE IF NOT EXISTS chat_messages (
+			id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+			message_text TEXT NOT NULL,
+			sender TEXT NOT NULL,
+			creation_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL )';
+		pdo_execute($sqlite_setup);
+	}else{
+		// mysql or postgres (shared)
+		$mysql=file_get_contents(dirname(__FILE__).'/db_dump.sql');
+		pdo_execute($mysql,[],false);
+	}
 }
 
-function pdo_execute($sql, $params = []) {
-	$stat = $_SERVER['pdo']->prepare($sql);
+function pdo_execute($sql, $params = [], $select_db=true) {
+	$pdo=pdo_setup($select_db?'dbname=chat;':'');	
+	$stat = $pdo->prepare($sql);
 	assert($stat);
 	$res = $stat->execute($params);
 	assert($res);

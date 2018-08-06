@@ -2,11 +2,11 @@
 
 require 'manager/chat/pdo.php';
 
-$routes['chat_app/db_setup'] = function($request_variables){
-    pdo_execute(pdo_setup_db_sql());
+$routes['chat/db_setup'] = function($request_variables){
+    pdo_setup_db_sql();
     echo '<!doctype html>';
     echo 'DB tables are now setup.<br>';
-    echo '<a href="../chat_app">Chat app</a>';
+    echo '<a href="../chat/">Chat app</a>';
 };
 
 require 'manager/chat/emoticons.php';
