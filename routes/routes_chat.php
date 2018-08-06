@@ -1,9 +1,5 @@
 <?php
 
-$routes['chat_app'] = function($request_variables){
-    header('Location: chat/chat_client.html');
-};
-
 require 'manager/chat/pdo.php';
 
 $routes['chat_app/db_setup'] = function($request_variables){
