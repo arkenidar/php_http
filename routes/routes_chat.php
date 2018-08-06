@@ -27,7 +27,8 @@ $routes['chat_list'] = function($request_variables){
     // - produce HTML output
     // IN: $messages OUT: $output
     $output='<!doctype html>'."\n".'<meta charset="utf-8">'."\n";
-    $output.='<base href="../chat/">'."\n";
+    $optional_prefix=isset($request_variables['embedded'])?'../':'';
+    $output.='<base href="'.$optional_prefix.'chat/">'."\n";
     $output.='<link rel="stylesheet" type="text/css" href="chat_client.css">'."\n";
     foreach($messages as $message) {
         $sender = htmlspecialchars($message['sender']);

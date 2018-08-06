@@ -98,7 +98,7 @@ function is_scrolled_to_bottom(){ return (Math.abs($('html')[0].scrollTop - scro
 function scroll_to_bottom(){ $('html')[0].scrollTop = scroll_height(); }
 
 // message listing
-function list_messages(scrollFlag){ $('#message_log').load(base+'chat_list', function(){ if(scrollFlag) scroll_to_bottom(); } ) }
+function list_messages(scrollFlag){ $('#message_log').load(base+'chat_list?embedded', function(){ if(scrollFlag) scroll_to_bottom(); } ) }
 function periodically_list_messages_callback(){ var scrollFlag = is_scrolled_to_bottom(); list_messages(scrollFlag); }
 
 function get_input(){
