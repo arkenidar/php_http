@@ -1,6 +1,10 @@
 <?php
 
-$routes['default'] = 'test1';
+$routes[''] = function($request_variables){
+    $routes_index = 'test1';
+    header('Location:'.$routes_index);
+};
+
 $routes['404'] = function($request_variables){
     echo 'not found';
 };

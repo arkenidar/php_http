@@ -20,9 +20,7 @@ function serve_request($request_variables){
     else if(isset($_SERVER['PATH_INFO']))
         $route=substr($_SERVER['PATH_INFO'],1);
 
-    if($route=='')
-        $route = $routes['default'];
-    $route = @$routes[$route];
+        $route = @$routes[$route];
     if(!$route)
         $route = @$routes['404'];
     if($route)
