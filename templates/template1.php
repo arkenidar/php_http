@@ -11,3 +11,5 @@
 <input type="text" placeholder="type message here" name="message" autofocus="true"></input>
 <input type="submit" value="send"></input>
 </form>
+
+<a href="test1?id=10&message=some text">TEST: test1?id=10&message=some text</a>
