@@ -7,7 +7,7 @@
 <?=$_u('wrapped_content')?>
 <hr>
 
-<a href="https://github.com/arkenidar/php_http">php_http files (this section of website) are available on arkenidar's github</a>
+<a href="https://github.com/arkenidar/php_http" target="_blank">php_http files (this section of website) are available on arkenidar's github</a>
 
 <script>
 function location_href_class(){
