@@ -10,8 +10,9 @@
             "request": "launch",
             "port": 9000,
             "pathMappings": {
+                "/media/dario/MS_Windows_10/Users/dario/Dropbox/src/php/php_http": "${workspaceRoot}",
                 "/mnt/c/Users/dario/Dropbox/src/php/php_http": "${workspaceRoot}",
-                "/media/Windows/Users/dario/Dropbox/src/php/php_http": "${workspaceRoot}"
+                "/media/Windows/Users/dario/Dropbox/src/php/php_http": "${workspaceRoot}",
             }
         },
         {
