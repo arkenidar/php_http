@@ -1,5 +1,5 @@
 <?php
-$routes['default']='blank';
-$routes['blank']=function(){
+
+$routes['']=function(){
 echo 'blank project';
 };
