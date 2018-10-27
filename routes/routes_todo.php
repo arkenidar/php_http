@@ -19,14 +19,17 @@ $routes['todo_remove'] = function($request_variables){
 
 $routes['todo_detail'] = function($request_variables){
     require_once 'manager/todo_manager.php';
-    $id = (int)@$request_variables['id'];
+    if(!isset($request_variables['id'])) return;
+    $id = (int)$request_variables['id'];
     todo_render_detail($id);
 };
 
 $routes['todo_update'] = function($request_variables){
     require_once 'manager/todo_manager.php';
-    $id = (int)@$request_variables['id'];
-    $description = (string)@$request_variables['description'];
+    if(!isset($request_variables['id'])) return;
+    if(!isset($request_variables['description'])) return;
+    $id = (int)$request_variables['id'];
+    $description = (string)$request_variables['description'];
     todo_update($id, $description);
     header("Location: todo_list");
 };
