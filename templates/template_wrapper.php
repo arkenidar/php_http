@@ -1,7 +1,7 @@
 <!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<a href="chat/db_setup">Chat</a> <a href="todo_list">To Do</a> <a href="multi">mvc multi-view</a> <a href="test1">mvc test 1</a> <a href="api?id=10&message=some text">api test</a>
+<a href="?r=chat/db_setup">Chat</a> <a href="?r=todo_list">To Do</a> <a href="?r=multi">mvc multi-view</a> <a href="?r=test1">mvc test 1</a> <a href="?r=api&id=10&message=some text">api test</a>
 
 <hr>
 <?=$_u('wrapped_content')?>
