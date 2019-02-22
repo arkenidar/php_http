@@ -1,9 +1,7 @@
 <?php
-$request_variables = $_REQUEST;
-
 try {
-    if(array_key_exists('REQUEST_URI',$_SERVER))
-    serve_request($request_variables);
+    if(isset($_SERVER['REQUEST_URI']))
+    serve_request($_REQUEST);
 }catch(Exception $e){
     echo 'Caught exception: ',$e->getMessage(),"\n";
 }
