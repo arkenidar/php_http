@@ -6,7 +6,7 @@ $routes['chat/db_setup'] = function($request_variables){
     pdo_setup_db_sql();
     echo '<!doctype html>';
     echo 'DB tables are now setup.<br>';
-    echo '<a href="../chat/">Chat app</a>';
+    echo '<a href="chat/">Chat app</a>';
 };
 
 require 'manager/chat/emoticons.php';
