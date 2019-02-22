@@ -1,7 +1,7 @@
 <?php
 
 $routes[''] = function($request_variables){
-    $routes_index = 'test1';
+    $routes_index = '?r=test1';
     header('Location:'.$routes_index);
 };
 
