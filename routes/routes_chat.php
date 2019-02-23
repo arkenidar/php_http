@@ -39,11 +39,11 @@ $routes['chat_list'] = function($request_variables){
 // insert new message
 $routes['chat_send'] = function($message){
 
-    $unparsedBodyJSON = (string)file_get_contents('php://input');
+    ///$unparsedBodyJSON = (string)file_get_contents('php://input');
     // IN: $request OUT: $message
     //$unparsedBodyJSON = $request->getBody();
     // parse the JSON into an associative array
-    $message = json_decode($unparsedBodyJSON, true);
+    ///$message = json_decode($unparsedBodyJSON, true);
 
     // $message has value ['message_text' => ..., 'sender' => ...];
     /////////////print($message['message_text']);
