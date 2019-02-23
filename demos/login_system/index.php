@@ -1,4 +1,5 @@
 <?php
+@session_start();
 try {
     if(isset($_SERVER['REQUEST_URI']))
     serve_request($_REQUEST);
