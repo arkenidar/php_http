@@ -116,18 +116,14 @@ function send_message(){
          return false;
     }
 
-    var form_data_object = { message_text };
+    var form_data_object = { message_text, sender:'anonymous' };
 
     // disable form on pre-submit
     $('#send_message_form *').prop('disabled', true);
 
     // send JSON with POST type HTTP request
-    $.ajax({
-        type: 'POST',
-        url: base+'chat_send',
-        dataType: 'text',
-        data: JSON.stringify(form_data_object),
-    }).done(function(){
+    $.post(base+'chat_send',form_data_object)
+    .done(function(){
         // empty the message field
         $('div#message_text').html('');
     })

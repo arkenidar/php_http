@@ -12,7 +12,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 require 'pdo_conf.php';
 
-function pdo_setup($dbname=''){
+function pdo_setup(){
 	
 	switch(pdo_db_type){
 
@@ -22,12 +22,12 @@ function pdo_setup($dbname=''){
 			break;
 
 		case 'postgres':
-			$db_url = 'pgsql:host=localhost;'.$dbname;
+			$db_url = 'pgsql:host=localhost;';
 			$pdo = new PDO($db_url, postgres_username, postgres_password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION] );
 			break;
 
 		case 'mysql':
-			$db_url = 'mysql:host=localhost;'.$dbname;
+			$db_url = 'mysql:host=localhost;';
 			$pdo = new PDO($db_url, mysql_username, mysql_password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION] );
 			break;
 	}
@@ -36,24 +36,8 @@ function pdo_setup($dbname=''){
 	return $pdo;
 }
 
-function pdo_setup_db_sql(){
-
-	if(pdo_db_type=='sqlite'){
-		$sqlite_setup='CREATE TABLE IF NOT EXISTS chat_messages (
-			id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-			message_text TEXT NOT NULL,
-			sender TEXT NOT NULL,
-			creation_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL )';
-		pdo_execute($sqlite_setup);
-	}else{
-		// mysql or postgres (shared)
-		$mysql=file_get_contents(dirname(__FILE__).'/db_dump.sql');
-		pdo_execute($mysql,[],false);
-	}
-}
-
-function pdo_execute($sql, $params = [], $select_db=true) {
-	$pdo=pdo_setup($select_db?'dbname=chat;':'');	
+function pdo_execute($sql, $params = []) {
+	$pdo=pdo_setup();	
 	$stat = $pdo->prepare($sql);
 	assert($stat);
 	$res = $stat->execute($params);
