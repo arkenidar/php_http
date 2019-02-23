@@ -22,8 +22,7 @@ function user(){
 // list messages
 $routes['chat_list'] = function($request_variables){
     // OUT: $messages
-    $chatdb=pdo_db_type=='sqlite'?'':'use chat;';
-    $messages = pdo_execute($chatdb.'SELECT * FROM (SELECT * FROM chat_messages ORDER BY creation_timestamp DESC LIMIT 15) AS res ORDER BY creation_timestamp ASC');
+    $messages = pdo_execute('SELECT * FROM (SELECT * FROM chat_messages ORDER BY creation_timestamp DESC LIMIT 15) AS res ORDER BY creation_timestamp ASC');
     // - produce HTML output
     // IN: $messages OUT: $output
     $output='<!doctype html>'."\n".'<meta charset="utf-8">'."\n";
@@ -44,8 +43,7 @@ $routes['chat_list'] = function($request_variables){
 $routes['chat_send'] = function($request_variables){
     $params=[':message_text'=>$request_variables['message_text'],
     ':sender'=>$request_variables['sender']];
-    $chatdb=pdo_db_type=='sqlite'?'':'use chat;';
-    pdo_execute($chatdb.'INSERT INTO chat_messages (message_text, sender) VALUES (:message_text, :sender)', $params);
+    pdo_execute('INSERT INTO chat_messages (message_text, sender) VALUES (:message_text, :sender)', $params);
 };
 
 $routes['user_logged'] = function($request_variables){

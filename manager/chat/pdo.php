@@ -22,12 +22,12 @@ function pdo_setup(){
 			break;
 
 		case 'postgres':
-			$db_url = 'pgsql:host=localhost;';
+			$db_url = 'pgsql:host=localhost;dbname=chat';
 			$pdo = new PDO($db_url, postgres_username, postgres_password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION] );
 			break;
 
 		case 'mysql':
-			$db_url = 'mysql:host=localhost;';
+			$db_url = 'mysql:host=localhost;dbname=chat';
 			$pdo = new PDO($db_url, mysql_username, mysql_password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION] );
 			break;
 	}
