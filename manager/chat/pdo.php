@@ -37,7 +37,7 @@ function pdo_setup(){
 }
 
 function pdo_execute($sql, $params = []) {
-	$pdo=pdo_setup();	
+	$pdo=pdo_setup();
 	$stat = $pdo->prepare($sql);
 	assert($stat);
 	$res = $stat->execute($params);
