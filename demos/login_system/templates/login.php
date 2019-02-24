@@ -1,3 +1,4 @@
+<?php $wrap = 'wrapper'; ?>
 <!-- logged out -->
 <form method="post">
 <input type="hidden" name="action" value="login">

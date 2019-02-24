@@ -21,7 +21,8 @@ function apply_template($template_file, $template_variables, $path_prefix=null){
     ob_end_clean();
 
     if(isset($wrap)) // wrapper template
-    $produced_template = apply_template($wrap,['wrapped_content'=>$produced_template]);
+    $produced_template = apply_template($wrap,
+    array_merge($template_variables,['wrapped_content'=>$produced_template]));
 
     return $produced_template;
 }
