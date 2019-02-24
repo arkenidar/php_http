@@ -1,12 +1,7 @@
 <?php
 
 $routes[''] = function($request_variables){
-    $routes_index = '?r=test1';
-    header('Location:'.$routes_index);
-};
-
-$routes['404'] = function($request_variables){
-    echo 'not found';
+    serve_request(['r'=>'test1']);
 };
 
 require_once 'routes/routes_todo.php';
