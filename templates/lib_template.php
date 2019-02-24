@@ -1,29 +1,27 @@
 <?php
+function apply_template($template_file, $template_variables, $path_prefix=null){
+    if($path_prefix==null) // auto path prefix
+    $template_file=dirname(__FILE__).'/../templates/'.$template_file.'.php';
 
-function header_footer_wrapper($wrapped_content, $template_file){
-    $template_variables = compact('wrapped_content');
-    return apply_template($template_file, $template_variables);
-}
-
-function apply_template_no_prefix($template_file, $template_variables){
-    $_u = function ($variable_name) use (&$template_variables){
-        return $template_variables[$variable_name];
-    };
     $_ = function ($variable_name) use (&$template_variables){
         return htmlspecialchars($template_variables[$variable_name]);
-    };
-    $_e = function($string_to_escape) {
-        return htmlspecialchars((string)$string_to_escape);
-    };
+    }; // get variable & escape it
+
+    $_u = function ($variable_name) use (&$template_variables){
+        return $template_variables[$variable_name];
+    }; // get variable & don't escape it (left Unescaped)
+
+    $_e = function($value_to_escape) {
+        return htmlspecialchars($value_to_escape);
+    }; // escape something
 
     ob_start();
     require $template_file;
     $produced_template = ob_get_contents();
     ob_end_clean();
-    if(isset($wrap)) $produced_template = header_footer_wrapper($produced_template, $wrap);
-    return $produced_template;
-}
 
-function apply_template($template_file, $template_variables){
-    return apply_template_no_prefix(dirname(__FILE__).'/../templates/'.$template_file.'.php', $template_variables);
+    if(isset($wrap)) // wrapper template
+    $produced_template = apply_template($wrap,['wrapped_content'=>$produced_template]);
+
+    return $produced_template;
 }
