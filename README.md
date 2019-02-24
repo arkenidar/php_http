@@ -11,9 +11,3 @@ Features:
 - it works with PHP's built-in server
 - it can be used with PHP's interactive mode ("php -a")
 
-In a command prompt:
-- run "git clone https://github.com/arkenidar/php_http.git"
-- run "cd php_http"
-- run "sudo php -S 0.0.0.0:88" # 'sudo' must be omitted on windows
-- open your web-browser (e.g. Firefox) and go to http://0.0.0.0:88
-- test it
