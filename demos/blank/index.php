@@ -6,7 +6,7 @@ try {
 }catch(Exception $e){
     echo 'exception:'.$e->getMessage();
 }
-function serve_request($request_variables){
+function serve_request($request_variables=[]){
     $routes = [];
     require 'routes/_router.php';
 
@@ -14,6 +14,13 @@ function serve_request($request_variables){
     
     if(isset($routes[$route])){
         ($routes[$route])($request_variables);
-    }else throw new Exception('RouteNotFound');
+    }else echo 'RouteNotFound';
     
+}
+function serve_request_ob($request_variables=[]){
+    ob_start();
+    serve_request($request_variables);//wrapped
+    $produced = ob_get_contents();
+    ob_end_clean();
+    return $produced;
 }

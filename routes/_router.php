@@ -1,7 +1,7 @@
 <?php
 
 $routes[''] = function($request_variables){
-    serve_request(['r'=>'test1']);
+    serve_request(array_merge($request_variables,['r'=>'test1']));
 };
 
 require_once 'routes/routes_todo.php';
