@@ -16,7 +16,7 @@ require 'manager/chat/emoticons.php';
 require 'manager/chat/links.php';
 
 function user(){
-    return "anonymous";
+    return $_SESSION['username']!=''?$_SESSION['username']:'anonymous';
 }
 
 // list messages
@@ -42,7 +42,8 @@ $routes['chat_list'] = function($request_variables){
 // insert new message
 $routes['chat_send'] = function($request_variables){
     $params=[':message_text'=>$request_variables['message_text'],
-    ':sender'=>$request_variables['sender']];
+    ':sender'=>user()];
+    if(user()!='anonymous')
     pdo_execute('INSERT INTO chat_messages (message_text, sender) VALUES (:message_text, :sender)', $params);
 };
 

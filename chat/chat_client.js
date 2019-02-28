@@ -16,7 +16,7 @@ var base='../index.php?r='
 // on ready
 $(function(){
     // enforce user being logged in
-    const allow_anonymous_user = true;
+    const allow_anonymous_user = false;
     enforce_user_login(allow_anonymous_user);
     // SETUP MESSAGE SENDING
     setup_emoticons();
@@ -43,10 +43,11 @@ function setup_emoticons() {
 
 function enforce_user_login (allow_anonymous_user) {
     $.get(base+'user_logged', function(data) {
-        $('#user').text(data);
-        if(data=='' && !allow_anonymous_user) {
+        username=data;
+        $('#user').text(username);
+        if(username=='anonymous' && !allow_anonymous_user) {
             alert('The user is logged out. Login, please.');
-            location = '..';
+            location = '/auth';
         }
     })
     .fail(function() {
@@ -116,7 +117,7 @@ function send_message(){
          return false;
     }
 
-    var form_data_object = { message_text, sender:'anonymous' };
+    var form_data_object = { message_text };
 
     // disable form on pre-submit
     $('#send_message_form *').prop('disabled', true);
