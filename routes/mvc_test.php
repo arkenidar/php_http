@@ -17,5 +17,5 @@ function http_mvc_test1($request_variables){
 
     $template_variables = compact('title', 'dump', 'content');
 
-    return apply_template($template_file, $template_variables);
+    echo apply_template($template_file, $template_variables);
 }

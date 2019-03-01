@@ -12,5 +12,5 @@ function http_mvc_multi($request_variables){
 
     $tab_content = apply_template($tab_template_file[$tab], []);
     $template_variables = compact('title', 'tab_content');
-    return apply_template($template_file, $template_variables);
+    echo apply_template($template_file, $template_variables);
 }
