@@ -39,6 +39,14 @@ $routes['chat_list'] = function($request_variables){
     echo $output;
 };
 
+// list messages in json
+$routes['chat/list.json'] = function($request_variables){
+    $statement = pdo_execute('SELECT * FROM (SELECT * FROM chat_messages ORDER BY creation_timestamp DESC LIMIT 15) AS res ORDER BY creation_timestamp ASC');
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $json = json_encode($results);
+    echo $json;
+};
+
 // insert new message
 $routes['chat_send'] = function($request_variables){
     $params=[':message_text'=>$request_variables['message_text'],
