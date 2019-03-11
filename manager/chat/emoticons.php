@@ -26,7 +26,7 @@ function textual_emoticon_to_html_emoticon($textual_emoticon_type){
 function parse_emoticons_expressions($string){
     $regex = '/:\w+:/i';
     $matches = [];
-    $success = preg_match_all($regex, $string, &$matches);
+    $success = preg_match_all($regex, $string, $matches);
     $processed = [];
 
     $matches = $matches[0];
