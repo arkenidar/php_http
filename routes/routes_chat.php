@@ -43,7 +43,7 @@ $routes['chat_list'] = function($request_variables){
 $routes['chat_send'] = function($request_variables){
     $params=[':message_text'=>$request_variables['message_text'],
     ':sender'=>user()];
-    if(user()!='anonymous')
+    //if(user()!='anonymous')
     pdo_execute('INSERT INTO chat_messages (message_text, sender) VALUES (:message_text, :sender)', $params);
 };
 

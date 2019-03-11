@@ -16,8 +16,7 @@ var base='../index.php?r='
 // on ready
 $(function(){
     // enforce user being logged in
-    const allow_anonymous_user = false;
-    enforce_user_login(allow_anonymous_user);
+    enforce_user_login();
     // SETUP MESSAGE SENDING
     setup_emoticons();
     $('#message_text').on('input', on_input);
@@ -41,14 +40,15 @@ function setup_emoticons() {
     });
 }
 
-function enforce_user_login (allow_anonymous_user) {
+function enforce_user_login () {
     $.get(base+'user_logged', function(data) {
         username=data;
         $('#user').text(username);
-        if(username=='anonymous' && !allow_anonymous_user) {
+        /*
+        if(username=='anonymous') {
             alert('The user is logged out. Login, please.');
             location = '/auth';
-        }
+        }*/
     })
     .fail(function() {
       alert( "Error! when loading: logged user info" );
