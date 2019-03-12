@@ -21,9 +21,11 @@ $(function(){
     setup_emoticons();
     $('#message_text').on('input', on_input);
     $('#send').click(send_message);
+    
     // get messages
-    periodically_list_messages_callback()
-    setInterval(periodically_list_messages_callback, 3000);
+    // TODO:disable without regressions of features
+    ///periodically_list_messages_callback()
+    ///setInterval(periodically_list_messages_callback, 3000);
 
 });
 
