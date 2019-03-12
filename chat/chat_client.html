@@ -47,7 +47,7 @@ const fetchUT = async (url,type='json') => await (await fetch(url))[type]()
 vue = new Vue({el: '#app',data:{messages:[]}})
 
 refresh=()=>{
-    fetchUT('http://localhost/php_http/?r=chat/list.json')
+    fetchUT('/php_http/?r=chat/list.json')
     .then((data)=>{ vue.$data.messages=data })
 
 /*
