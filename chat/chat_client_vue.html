@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<body>
+
+<style>
+message{ border: 1px solid black; display: block}
+</style>
+
+<div id="app">
+  <message v-for="x in messages">{{x.sender}}:{{x.message_text}}</message>
+</div>
+
+<script>
+const fetchUT = async (url,type='json') => await (await fetch(url))[type]()
+
+vue = new Vue({el: '#app',data:{messages:[]}})
+
+refresh=()=>{
+  fetchUT('/php_http/?r=chat/list.json')
+  .then((data)=>{ vue.$data.messages=data })
+
+/*
+vue.$data.messages=
+[{"id":"1","message_text":"1","sender":"anonymous","creation_timestamp":"2019-03-12 13:28:51"},
+{"id":"2","message_text":"2","sender":"anonymous","creation_timestamp":"2019-03-12 14:06:27"}]
+*/
+
+}
+setInterval(refresh, 500)
+</script>
+
+</body>
+</html>
+
