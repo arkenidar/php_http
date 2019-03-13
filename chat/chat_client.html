@@ -43,9 +43,21 @@ const fetchUT = async (url,type='json') => await (await fetch(url))[type]()
 
 vue = new Vue({el: '#app',data:{messages:[]}})
 
+function json_parse_emoticons(array){
+    processed=[]
+    for(element_index in array){
+        array[element_index].message_text=
+        parse_emoticons_expressions(array[element_index].message_text)
+        processed.push(array[element_index])
+    }
+    return processed
+}
+
 refresh=()=>{
     fetchUT('/php_http/?r=chat/list.json')
-    .then((data)=>{ vue.$data.messages=data })
+    .then(data=>{
+        data=json_parse_emoticons(data)
+        vue.$data.messages=data })
 
 /*
 vue.$data.messages=

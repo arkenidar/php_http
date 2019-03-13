@@ -46,7 +46,7 @@ $routes['chat/list.json'] = function($request_variables){
     $results = [];
     foreach($messages as $message) {
         $text = htmlspecialchars($message['message_text']);
-        $text = parse_emoticons_expressions($text);
+        //$text = parse_emoticons_expressions($text); // placed in the frontend
         $text = create_html_links($text);
         $message['message_text'] = $text;
         $results[$message['id']] = $message;
