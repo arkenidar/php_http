@@ -51,7 +51,7 @@ $routes['chat/list.json'] = function($request_variables){
         $message['message_text'] = $text;
         $results[$message['id']] = $message;
     }
-    
+    header('Content-Type: application/json');
     $json = json_encode($results);
     echo $json;
 };
