@@ -36,7 +36,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <div id="message_log" class="scrollable_below_bottom_panel">
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <div id="app">
-<div class="line" v-for="x in messages">{{x.sender}}:{{x.message_text}}</div>
+<div class="line" v-for="x in messages">{{x.sender}}:<span v-html="x.message_text"></span></div>
 </div>
 <script>
 const fetchUT = async (url,type='json') => await (await fetch(url))[type]()

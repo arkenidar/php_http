@@ -42,7 +42,17 @@ $routes['chat_list'] = function($request_variables){
 // list messages in json
 $routes['chat/list.json'] = function($request_variables){
     $statement = pdo_execute('SELECT * FROM (SELECT * FROM chat_messages ORDER BY creation_timestamp DESC LIMIT 15) AS res ORDER BY creation_timestamp ASC');
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $messages = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $results = [];
+    foreach($messages as $message) {
+        $sender = htmlspecialchars($message['sender']);
+        $text = htmlspecialchars($message['message_text']);
+        $text = parse_emoticons_expressions($text);
+        $text = create_html_links($text);
+        $message['message_text'] = $text;
+        $results[] = $message;
+    }
+    
     $json = json_encode($results);
     echo $json;
 };
