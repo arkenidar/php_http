@@ -43,14 +43,10 @@ const fetchUT = async (url,type='json') => await (await fetch(url))[type]()
 
 vue = new Vue({el: '#app',data:{messages:[]}})
 
-function json_parse_emoticons(array){
-    processed=[]
-    for(element_index in array){
-        array[element_index].message_text=
-        parse_emoticons_expressions(array[element_index].message_text)
-        processed.push(array[element_index])
-    }
-    return processed
+function json_parse_emoticons(json_object){
+    for(var key in json_object) json_object[key].message_text = 
+    parse_emoticons_expressions(json_object[key].message_text)
+    return json_object
 }
 
 refresh=()=>{
