@@ -50,7 +50,7 @@ $routes['chat/list.json'] = function($request_variables){
         $text = parse_emoticons_expressions($text);
         $text = create_html_links($text);
         $message['message_text'] = $text;
-        $results[] = $message;
+        $results[$message['id']] = $message;
     }
     
     $json = json_encode($results);
