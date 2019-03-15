@@ -45,7 +45,8 @@ $routes['chat/list.json'] = function($request_variables){
     $messages = $statement->fetchAll(PDO::FETCH_ASSOC);
     $results = [];
     foreach($messages as $message) {
-        $text = htmlspecialchars($message['message_text']);
+        $text=$message['message_text'];
+        //$text = htmlspecialchars($text);
         //$text = parse_emoticons_expressions($text); // placed in the frontend
         $text = create_html_links($text);
         $message['message_text'] = $text;

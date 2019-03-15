@@ -45,8 +45,10 @@ vue = new Vue({
 el: '#app',
 data:{messages:{}},
 methods:{
-	message_emo:function(x){
-		return parse_emoticons_expressions(x) },
+	message_emo:function(text){
+        text=text.replace(/</g,'&lt;') // prevents html injection
+        text=parse_emoticons_expressions(text)
+		return text },
 	}
 })
 
