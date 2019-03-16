@@ -20,10 +20,8 @@ function user(){
 $routes['chat/list.json'] = function($request_variables){
     $statement = pdo_execute('SELECT * FROM (SELECT * FROM chat_messages ORDER BY creation_timestamp DESC LIMIT 15) AS res ORDER BY creation_timestamp ASC');
     $messages = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $results = [];
-    foreach($messages as $message) $results[$message['id']] = $message;
     header('Content-Type: application/json');
-    $json = json_encode($results);
+    $json = json_encode($messages);
     echo $json;
 };
 

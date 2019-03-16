@@ -44,44 +44,40 @@ const fetchUT = async (url,type='json') => await (await fetch(url))[type]()
 vue = new Vue({
 el: '#app',
 data:{messages:{}},
-methods:{
-	message_emo:function(text){
-
-        // prevents html injection (ESCAPing)
-        text=text.replace(/</g,'&lt;')
-
-        // from EMOticon expressions to html
-        text=parse_emoticons_expressions(text)
-
-        // create html LINKs
-        function link(url){
-            html=
-            '<a href="'+
-            url.replace(/"/g,'&quot;')+
-            '" target="_blank">'+
-            url.replace(/</g,'&lt;')+
-            '</a>'
-            return html
-        }
-        text=text.replace(/https?\:\/\/\S*/g,link)
-        
-        return text },
-	}
+methods:{message_emo},
 })
 
 refresh=()=>{
     fetchUT('/php_http/?r=chat/list.json')
-    .then(data=>{
-        vue.$data.messages=data })
-
-/*
-vue.$data.messages=
-[{"id":"1","message_text":"1","sender":"anonymous","creation_timestamp":"2019-03-12 13:28:51"},
-{"id":"2","message_text":"2","sender":"anonymous","creation_timestamp":"2019-03-12 14:06:27"}]
-*/
-
+    .then(list=>{
+        // id as index
+        messages={}
+        for(item of list) messages[item.id]=item
+        vue.$data.messages=messages })
 }
 setInterval(refresh, 500)
+
+function message_emo(text){
+
+// prevents html injection (ESCAPing)
+text=text.replace(/</g,'&lt;')
+
+// from EMOticon expressions to html
+text=parse_emoticons_expressions(text)
+
+// create html LINKs
+function link(url){
+    html=
+    '<a href="'+
+    url.replace(/"/g,'&quot;')+
+    '" target="_blank">'+
+    url.replace(/</g,'&lt;')+
+    '</a>'
+    return html
+}
+text=text.replace(/https?\:\/\/\S*/g,link)
+
+return text }
 </script>
 </div>
 <div id="emoticons_palette" class="hidden scrollable_below_bottom_panel"></div>
