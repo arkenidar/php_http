@@ -125,7 +125,7 @@ function send_message(){
     $('#send_message_form *').prop('disabled', true);
 
     // send JSON with POST type HTTP request
-    $.post(base+'chat_send',form_data_object)
+    $.post(base+'chat/send',form_data_object)
     .done(function(){
         // empty the message field
         $('div#message_text').html('');

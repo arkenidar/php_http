@@ -46,22 +46,32 @@ el: '#app',
 data:{messages:{}},
 methods:{
 	message_emo:function(text){
-        text=text.replace(/</g,'&lt;') // prevents html injection
+
+        // prevents html injection (ESCAPing)
+        text=text.replace(/</g,'&lt;')
+
+        // from EMOticon expressions to html
         text=parse_emoticons_expressions(text)
-		return text },
+
+        // create html LINKs
+        function link(url){
+            html=
+            '<a href="'+
+            url.replace(/"/g,'&quot;')+
+            '" target="_blank">'+
+            url.replace(/</g,'&lt;')+
+            '</a>'
+            return html
+        }
+        text=text.replace(/https?\:\/\/\S*/g,link)
+        
+        return text },
 	}
 })
-
-function json_parse_emoticons(json_object){
-    for(var key in json_object) json_object[key].message_text = 
-    parse_emoticons_expressions(json_object[key].message_text)
-    return json_object
-}
 
 refresh=()=>{
     fetchUT('/php_http/?r=chat/list.json')
     .then(data=>{
-        //data=json_parse_emoticons(data)
         vue.$data.messages=data })
 
 /*
