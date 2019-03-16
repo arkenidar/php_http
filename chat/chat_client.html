@@ -48,14 +48,25 @@ methods:{message_emo},
 })
 
 refresh=()=>{
-    fetchUT('/php_http/?r=chat/list.json')
-    .then(list=>{
+    fetchUT('/php_http/?r=chat/list.csv','text')
+    .then(csv=>{
+        list=[]
+        for(line of csv.split('\n')){
+            if(line=='') continue
+            line=line.split(',')
+            list.push({
+                id:line[0],
+                message_text:line[1],
+                sender:line[2],
+                creation_timestamp:line[3],
+            })
+        }
         // id as index
         messages={}
         for(item of list) messages[item.id]=item
         vue.$data.messages=messages })
 }
-setInterval(refresh, 500)
+setInterval(refresh, 2000)
 
 function message_emo(text){
 
