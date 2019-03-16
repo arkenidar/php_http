@@ -52,8 +52,8 @@ refresh=()=>{
     .then(csv=>{
         list=[]
         for(line of csv.split('\n')){
-            if(line=='') continue
             line=line.split(',')
+            if(line.length!=4) continue
             list.push({
                 id:line[0],
                 message_text:line[1],
