@@ -6,7 +6,7 @@ $routes[''] = function($request_variables){
 
 require_once 'routes/routes_todo.php';
 
-require_once 'routes/routes_chat.php';
+require_once 'chat/routes_chat.php';
 $routes['util/phpinfo'] = function($request_variables){
     phpinfo();
 };
