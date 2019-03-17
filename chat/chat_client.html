@@ -36,7 +36,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <div id="message_log" class="scrollable_below_bottom_panel">
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <div id="app">
-<div class="line" v-for="x in messages">{{x.sender}}:<span v-html="message_emo(x.message_text)"></span></div>
+<div class="line" v-for="msg in messages">{{msg[2]}}:<span v-html="message_emo(msg[1])"></span></div>
 </div>
 <script>
 const fetchUT = async (url,type='json') => await (await fetch(url))[type]()
@@ -48,23 +48,9 @@ methods:{message_emo},
 })
 
 refresh=()=>{
-    fetchUT('/php_http/?r=chat/list.csv','text')
-    .then(csv=>{
-        list=[]
-        for(line of csv.split('\n')){
-            line=line.split(',')
-            if(line.length!=4) continue
-            list.push({
-                id:line[0],
-                message_text:line[1],
-                sender:line[2],
-                creation_timestamp:line[3],
-            })
-        }
-        // id as index
-        messages={}
-        for(item of list) messages[item.id]=item
-        vue.$data.messages=messages })
+    fetchUT('/php_http/?r=chat/list')
+    .then(messages=>{
+        vue.$data.messages= messages })
 }
 setInterval(refresh, 2000)
 

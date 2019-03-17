@@ -17,13 +17,12 @@ function user(){
 }
 
 // list messages in json
-$routes['chat/list.csv'] = function($request_variables){
-    $statement = pdo_execute('SELECT * FROM (SELECT id,message_text,sender,creation_timestamp FROM chat_messages ORDER BY creation_timestamp DESC LIMIT 15) AS res ORDER BY creation_timestamp ASC');
-    header('Content-Type: text/plain');
-    $csv='';
-    while($row = $statement->fetch(PDO::FETCH_ASSOC))
-        $csv.=$row['id'].','.$row['message_text'].','.$row['sender'].','.$row['creation_timestamp']."\n";
-    echo $csv;
+$routes['chat/list'] = function($request_variables){
+    $statement = pdo_execute('SELECT * FROM (SELECT * FROM chat_messages ORDER BY creation_timestamp DESC LIMIT 15) AS res ORDER BY creation_timestamp ASC');
+    $records=$statement->fetchAll(PDO::FETCH_NUM);
+    header('Content-Type: application/json');
+    $json = json_encode($records);
+    echo $json;
 };
 
 // insert new message
