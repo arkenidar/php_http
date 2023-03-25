@@ -1,5 +1,5 @@
 <?php
-    $wrap = 'template_wrapper';
+    $_wrap_with('template_wrapper');
 ?>
 
 <title>MVC test 1</title>

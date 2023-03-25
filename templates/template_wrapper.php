@@ -1,10 +1,11 @@
-<!doctype html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
+    $_wrap_with('template_wrapper_2');
+?>
 
 <a href="?r=chat/db_setup">Chat</a> <a href="?r=todo_list">To Do</a> <a href="?r=multi">mvc multi-view</a> <a href="?r=test1">mvc test 1</a> <a href="?r=api&id=10&message=some text">api test</a>
 
 <hr>
-<?=$_u('wrapped_content')?>
+<?= $_get_wrapped_content() ?>
 <hr>
 
 <a href="https://github.com/arkenidar/php_http" target="_blank">php_http files (this section of website) are available on arkenidar's github</a>
