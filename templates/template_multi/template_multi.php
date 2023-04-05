@@ -1,5 +1,5 @@
 <?php
-    $wrap = 'template_wrapper';
+    $_wrap_with('template_wrapper');
 ?>
 
 <p><a href="?r=multi&tab=0">tab A</a> <a href="?r=multi&tab=1">tab B</a> <a href="?r=multi&tab=2">tab C</a></p>
