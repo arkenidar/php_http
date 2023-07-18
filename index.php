@@ -14,6 +14,9 @@ function serve_request($request_variables=[]){
     
     if(isset($routes[$route])){
         ($routes[$route])($request_variables);
+	}else if(function_exists("routes_$route")){
+		$function_name="routes_$route";
+		$function_name($request_variables);
     }else echo 'RouteNotFound';
     
 }
